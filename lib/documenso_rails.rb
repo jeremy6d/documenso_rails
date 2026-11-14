@@ -1,13 +1,12 @@
 require "documenso_rails/version"
+require "documenso_rails/errors"
 require "documenso_rails/configuration"
+require "documenso_rails/connection"
 require "documenso_rails/client"
 require "documenso_rails/model"
 require "documenso_rails/engine"
 
 module DocumensoRails
-  class Error < StandardError; end
-  class ApiError < Error; end
-
   class << self
     def configuration
       @configuration ||= Configuration.new
