@@ -4,7 +4,8 @@ Gem::Specification.new do |spec|
   spec.name                  = "documenso_rails"
   spec.version               = DocumensoRails::VERSION
   spec.authors               = ["Your Law Firm"]
-  spec.summary               = "Production Rails Engine & API v2 client for Documenso Cloud"
+  spec.summary               = "Rails Engine and Documenso API v2 client"
+  spec.license               = "MIT"
   spec.required_ruby_version = ">= 3.1.0"
 
   spec.files = Dir["{app,config,lib}/**/*", "Rakefile", "README.md"]
