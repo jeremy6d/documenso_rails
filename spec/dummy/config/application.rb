@@ -11,6 +11,7 @@ require "documenso_rails"
 
 module Dummy
   class Application < Rails::Application
+    config.root = File.expand_path("..", __dir__)
     config.load_defaults Rails::VERSION::STRING.to_f
     config.eager_load = false
     config.secret_key_base = "test_secret_key_base_for_documenso_rails"
