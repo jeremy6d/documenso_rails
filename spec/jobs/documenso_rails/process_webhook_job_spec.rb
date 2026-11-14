@@ -25,8 +25,20 @@ RSpec.describe DocumensoRails::ProcessWebhookJob, type: :job do
   end
 
   it "downloads and attaches the signed PDF on DOCUMENT_COMPLETED" do
-    download_stub = stub_request(:get, "https://app.documenso.com/api/v2/envelope/env_777/download")
+    stub_request(:get, "https://app.documenso.com/api/v2/envelope/env_777")
       .with(headers: { "Authorization" => "api_test_token_123" })
+      .to_return(
+        status: 200,
+        body: {
+          id: "env_777",
+          status: "COMPLETED",
+          envelopeItems: [{ id: "item_777" }]
+        }.to_json
+      )
+    download_stub = stub_request(
+      :get,
+      "https://app.documenso.com/api/v2/envelope/item/item_777/download?version=signed"
+    ).with(headers: { "Authorization" => "api_test_token_123" })
       .to_return(status: 200, body: "%PDF-1.4 signed binary content")
 
     described_class.perform_now("DOCUMENT_COMPLETED", "env_777", { "envelopeId" => "env_777" })
