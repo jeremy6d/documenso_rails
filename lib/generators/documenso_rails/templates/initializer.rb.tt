@@ -1,0 +1,11 @@
+DocumensoRails.configure do |config|
+  config.base_url                 = ENV.fetch("DOCUMENSO_API_URL", "https://app.documenso.com/api/v2")
+  config.api_key                  = Rails.application.credentials.dig(:documenso, :api_key)
+  config.webhook_secret           = Rails.application.credentials.dig(:documenso, :webhook_secret)
+  config.model_class_name         = "<%= model_name %>"
+  config.unsigned_attachment_name = :unsigned_pdf
+  config.signed_attachment_name   = :signed_pdf
+
+  # Optional: Automatically redirect clients to your LawPay portal after signing
+  # config.redirect_url = "https://secure.lawpay.com/pages/yourfirm/trust"
+end

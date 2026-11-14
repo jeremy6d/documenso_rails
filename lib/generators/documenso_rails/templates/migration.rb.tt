@@ -1,0 +1,11 @@
+class AddDocumensoFieldsTo<%= table_name.camelize %> < ActiveRecord::Migration<%= migration_version %>
+  def change
+    add_column :<%= table_name %>, :documenso_envelope_id, :string
+    add_column :<%= table_name %>, :signature_status, :string, default: "draft", null: false
+    add_column :<%= table_name %>, :signature_sent_at, :datetime
+    add_column :<%= table_name %>, :signature_completed_at, :datetime
+
+    add_index :<%= table_name %>, :documenso_envelope_id, unique: true
+    add_index :<%= table_name %>, :signature_status
+  end
+end
