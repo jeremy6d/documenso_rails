@@ -55,11 +55,15 @@ module DocumensoRails
         distribute: distribute
       )
 
-      update!(
-        documenso_envelope_id: envelope.id,
-        signature_status: "sent",
-        signature_sent_at: Time.current
-      )
+      attrs = { documenso_envelope_id: envelope.id }
+      if distribute
+        attrs[:signature_status] = "sent"
+        attrs[:signature_sent_at] = Time.current
+      else
+        attrs[:signature_status] = "draft"
+        attrs[:signature_sent_at] = nil
+      end
+      update!(attrs)
 
       envelope
     end

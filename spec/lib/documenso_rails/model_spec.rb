@@ -69,6 +69,23 @@ RSpec.describe DocumensoRails::Model do
       doc.reload
       expect(doc.documenso_envelope_id).to eq("env_tpl_88")
       expect(doc.signature_status).to eq("sent")
+      expect(doc.signature_sent_at).to be_present
+    end
+
+    it "keeps draft status when distribute is false" do
+      stub_request(:post, "https://app.documenso.com/api/v2/envelope/use")
+        .to_return(status: 200, body: { id: "env_tpl_draft", status: "DRAFT" }.to_json)
+
+      doc.send_from_template!(
+        template_id: "envelope_template10",
+        signers: [{ id: 1, name: "Jane Client", email: "jane@example.com" }],
+        distribute: false
+      )
+
+      doc.reload
+      expect(doc.documenso_envelope_id).to eq("env_tpl_draft")
+      expect(doc.signature_status).to eq("draft")
+      expect(doc.signature_sent_at).to be_nil
     end
   end
 end
