@@ -45,7 +45,7 @@ module DocumensoRails
       signed_attachment = record.public_send(config.signed_attachment_name)
       return if signed_attachment.attached?
 
-      pdf_binary = DocumensoRails.client.download_signed_pdf(envelope_id)
+      pdf_binary = DocumensoRails.client.envelopes.download(envelope_id)
       title_slug = (record.try(:title) || "document-#{record.id}").parameterize
 
       signed_attachment.attach(

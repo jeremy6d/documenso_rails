@@ -40,8 +40,6 @@ ActiveRecord::Schema.define do
   end
 end
 
-ActiveStorage::Blob.service = ActiveStorage::Service::DiskService.new(root: Dir.mktmpdir)
-
 RSpec.configure do |config|
   config.use_transactional_fixtures = true
   config.include ActiveJob::TestHelper

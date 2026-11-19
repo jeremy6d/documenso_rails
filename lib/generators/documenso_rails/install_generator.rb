@@ -25,6 +25,30 @@ module DocumensoRails
         route 'mount DocumensoRails::Engine, at: "/documenso"'
       end
 
+      def configure_model
+        model_path = File.join("app/models", "#{model_name.underscore}.rb")
+        if File.exist?(model_path)
+          inject_into_class model_path, model_name do
+            <<~RUBY
+              include DocumensoRails::Model
+
+              has_one_attached :unsigned_pdf
+              has_one_attached :signed_pdf
+
+            RUBY
+          end
+        else
+          say "Model #{model_path} not found. Add:", :yellow
+          say <<~RUBY
+            class #{model_name} < ApplicationRecord
+              include DocumensoRails::Model
+              has_one_attached :unsigned_pdf
+              has_one_attached :signed_pdf
+            end
+          RUBY
+        end
+      end
+
       private
 
       def table_name

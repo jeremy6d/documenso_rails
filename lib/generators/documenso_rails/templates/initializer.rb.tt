@@ -6,6 +6,6 @@ DocumensoRails.configure do |config|
   config.unsigned_attachment_name = :unsigned_pdf
   config.signed_attachment_name   = :signed_pdf
 
-  # Optional: Automatically redirect clients to your LawPay portal after signing
-  # config.redirect_url = "https://secure.lawpay.com/pages/yourfirm/trust"
+  # Optional: redirect signers after completion
+  # config.redirect_url = "https://example.com/thanks"
 end
