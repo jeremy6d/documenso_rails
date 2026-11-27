@@ -23,6 +23,10 @@ A mountable Rails Engine and API v2 client for integrating Documenso (Cloud or s
    end
    ```
 
+## License
+
+Released under the [MIT License](LICENSE.txt).
+
 ## Running Tests
 
 ```bash
