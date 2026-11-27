@@ -1064,3 +1064,422 @@ Processing by DocumensoRails::WebhooksController#create as HTML
 [ActiveJob] Enqueued DocumensoRails::ProcessWebhookJob (Job ID: 33353857-7ab0-4586-a497-0e784fd1d647) to Test(default) with arguments: "DOCUMENT_COMPLETED", "env_555", {"envelopeId" => "env_555"}
 Completed 200 OK in 0ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
   [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+Generating image variants require the image_processing gem. Please add `gem "image_processing", "~> 1.2"` to your Gemfile or set `config.active_storage.variant_processor = :disabled`.
+  [1m[35m (2.6ms)[0m  [1m[35mDROP TABLE IF EXISTS "active_storage_blobs"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "active_storage_blobs" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "key" varchar NOT NULL, "filename" varchar NOT NULL, "content_type" varchar, "metadata" text, "service_name" varchar NOT NULL, "byte_size" bigint NOT NULL, "checksum" varchar, "created_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_active_storage_blobs_on_key" ON "active_storage_blobs" ("key")[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE IF EXISTS "active_storage_attachments"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TABLE "active_storage_attachments" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar NOT NULL, "record_type" varchar NOT NULL, "record_id" integer NOT NULL, "blob_id" integer NOT NULL, "created_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_active_storage_attachments_on_blob_id" ON "active_storage_attachments" ("blob_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_active_storage_attachments_uniqueness" ON "active_storage_attachments" ("record_type", "record_id", "name", "blob_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE IF EXISTS "active_storage_variant_records"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TABLE "active_storage_variant_records" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "blob_id" integer NOT NULL, "variation_digest" varchar NOT NULL)[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_active_storage_variant_records_uniqueness" ON "active_storage_variant_records" ("blob_id", "variation_digest")[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE IF EXISTS "legal_documents"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TABLE "legal_documents" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "documenso_envelope_id" varchar, "signing_url" varchar, "signature_status" varchar DEFAULT 'draft' NOT NULL, "signature_sent_at" datetime(6), "signature_completed_at" datetime(6), "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.0ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (0.0ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'test', '2026-11-27 03:38:42.807404', '2026-11-27 03:38:42.807406') RETURNING "key"[0m
+Generating image variants require the image_processing gem. Please add `gem "image_processing", "~> 1.2"` to your Gemfile or set `config.active_storage.variant_processor = :disabled`.
+  [1m[35m (1.0ms)[0m  [1m[35mDROP TABLE IF EXISTS "active_storage_blobs"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "active_storage_blobs" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "key" varchar NOT NULL, "filename" varchar NOT NULL, "content_type" varchar, "metadata" text, "service_name" varchar NOT NULL, "byte_size" bigint NOT NULL, "checksum" varchar, "created_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_active_storage_blobs_on_key" ON "active_storage_blobs" ("key")[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE IF EXISTS "active_storage_attachments"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TABLE "active_storage_attachments" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar NOT NULL, "record_type" varchar NOT NULL, "record_id" integer NOT NULL, "blob_id" integer NOT NULL, "created_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_active_storage_attachments_on_blob_id" ON "active_storage_attachments" ("blob_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_active_storage_attachments_uniqueness" ON "active_storage_attachments" ("record_type", "record_id", "name", "blob_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE IF EXISTS "active_storage_variant_records"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TABLE "active_storage_variant_records" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "blob_id" integer NOT NULL, "variation_digest" varchar NOT NULL)[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_active_storage_variant_records_uniqueness" ON "active_storage_variant_records" ("blob_id", "variation_digest")[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE IF EXISTS "legal_documents"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TABLE "legal_documents" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "documenso_envelope_id" varchar, "signing_url" varchar, "signature_status" varchar DEFAULT 'draft' NOT NULL, "signature_sent_at" datetime(6), "signature_completed_at" datetime(6), "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.0ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (0.0ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'test', '2026-11-27 03:38:46.319915', '2026-11-27 03:38:46.319917') RETURNING "key"[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mLegalDocument Create (0.2ms)[0m  [1m[32mINSERT INTO "legal_documents" ("title", "documenso_envelope_id", "signing_url", "signature_status", "signature_sent_at", "signature_completed_at", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["title", "Client Fee Agreement"], ["documenso_envelope_id", "env_777"], ["signing_url", nil], ["signature_status", "sent"], ["signature_sent_at", nil], ["signature_completed_at", nil], ["created_at", "2026-11-27 03:38:46.346093"], ["updated_at", "2026-11-27 03:38:46.346093"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+[ActiveJob] [DocumensoRails::ProcessWebhookJob] [9eefc15b-bff2-47d8-8bef-6697916a969c] Performing DocumensoRails::ProcessWebhookJob (Job ID: 9eefc15b-bff2-47d8-8bef-6697916a969c) from Test(default) with arguments: "DOCUMENT_OPENED", "env_777", {"envelopeId" => "env_777"}
+[ActiveJob] [DocumensoRails::ProcessWebhookJob] [9eefc15b-bff2-47d8-8bef-6697916a969c]   [1m[36mLegalDocument Load (0.1ms)[0m  [1m[34mSELECT "legal_documents".* FROM "legal_documents" WHERE "legal_documents"."documenso_envelope_id" = ? LIMIT ?[0m  [["documenso_envelope_id", "env_777"], ["LIMIT", 1]]
+[ActiveJob] [DocumensoRails::ProcessWebhookJob] [9eefc15b-bff2-47d8-8bef-6697916a969c]   [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+[ActiveJob] [DocumensoRails::ProcessWebhookJob] [9eefc15b-bff2-47d8-8bef-6697916a969c]   [1m[36mLegalDocument Update (0.1ms)[0m  [1m[33mUPDATE "legal_documents" SET "signature_status" = ?, "updated_at" = ? WHERE "legal_documents"."id" = ?[0m  [["signature_status", "opened"], ["updated_at", "2026-11-27 03:38:46.352780"], ["id", 1]]
+[ActiveJob] [DocumensoRails::ProcessWebhookJob] [9eefc15b-bff2-47d8-8bef-6697916a969c]   [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+[ActiveJob] [DocumensoRails::ProcessWebhookJob] [9eefc15b-bff2-47d8-8bef-6697916a969c] Performed DocumensoRails::ProcessWebhookJob (Job ID: 9eefc15b-bff2-47d8-8bef-6697916a969c) from Test(default) in 6.38ms
+  [1m[36mLegalDocument Load (0.0ms)[0m  [1m[34mSELECT "legal_documents".* FROM "legal_documents" WHERE "legal_documents"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mLegalDocument Create (0.1ms)[0m  [1m[32mINSERT INTO "legal_documents" ("title", "documenso_envelope_id", "signing_url", "signature_status", "signature_sent_at", "signature_completed_at", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["title", "Client Fee Agreement"], ["documenso_envelope_id", "env_777"], ["signing_url", nil], ["signature_status", "sent"], ["signature_sent_at", nil], ["signature_completed_at", nil], ["created_at", "2026-11-27 03:38:46.354988"], ["updated_at", "2026-11-27 03:38:46.354988"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+[ActiveJob] [DocumensoRails::ProcessWebhookJob] [96a9a0d2-2cda-4b98-8df4-598a70cc3730] Performing DocumensoRails::ProcessWebhookJob (Job ID: 96a9a0d2-2cda-4b98-8df4-598a70cc3730) from Test(default) with arguments: "DOCUMENT_COMPLETED", "env_777", {"envelopeId" => "env_777"}
+[ActiveJob] [DocumensoRails::ProcessWebhookJob] [96a9a0d2-2cda-4b98-8df4-598a70cc3730]   [1m[36mLegalDocument Load (0.0ms)[0m  [1m[34mSELECT "legal_documents".* FROM "legal_documents" WHERE "legal_documents"."documenso_envelope_id" = ? LIMIT ?[0m  [["documenso_envelope_id", "env_777"], ["LIMIT", 1]]
+[ActiveJob] [DocumensoRails::ProcessWebhookJob] [96a9a0d2-2cda-4b98-8df4-598a70cc3730]   [1m[36mActiveStorage::Attachment Load (0.0ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 1], ["record_type", "LegalDocument"], ["name", "signed_pdf"], ["LIMIT", 1]]
+[ActiveJob] [DocumensoRails::ProcessWebhookJob] [96a9a0d2-2cda-4b98-8df4-598a70cc3730]   [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+[ActiveJob] [DocumensoRails::ProcessWebhookJob] [96a9a0d2-2cda-4b98-8df4-598a70cc3730]   [1m[36mActiveStorage::Blob Load (0.2ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" INNER JOIN "active_storage_attachments" ON "active_storage_blobs"."id" = "active_storage_attachments"."blob_id" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 1], ["record_type", "LegalDocument"], ["name", "signed_pdf"], ["LIMIT", 1]]
+[ActiveJob] [DocumensoRails::ProcessWebhookJob] [96a9a0d2-2cda-4b98-8df4-598a70cc3730]   [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+[ActiveJob] [DocumensoRails::ProcessWebhookJob] [96a9a0d2-2cda-4b98-8df4-598a70cc3730] Error performing DocumensoRails::ProcessWebhookJob (Job ID: 96a9a0d2-2cda-4b98-8df4-598a70cc3730) from Test(default) in 21.72ms: ActiveRecord::RecordNotSaved (Failed to save the new associated signed_pdf_attachment.):
+
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mLegalDocument Create (0.1ms)[0m  [1m[32mINSERT INTO "legal_documents" ("title", "documenso_envelope_id", "signing_url", "signature_status", "signature_sent_at", "signature_completed_at", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["title", "Client Fee Agreement"], ["documenso_envelope_id", "env_777"], ["signing_url", nil], ["signature_status", "sent"], ["signature_sent_at", nil], ["signature_completed_at", nil], ["created_at", "2026-11-27 03:38:46.385944"], ["updated_at", "2026-11-27 03:38:46.385944"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mLegalDocument Update (0.1ms)[0m  [1m[33mUPDATE "legal_documents" SET "signature_status" = ?, "updated_at" = ? WHERE "legal_documents"."id" = ?[0m  [["signature_status", "completed"], ["updated_at", "2026-11-27 03:38:46.386414"], ["id", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+[ActiveJob] [DocumensoRails::ProcessWebhookJob] [bf6a9b5f-fa33-4ff5-b8ba-cebf46efe391] Performing DocumensoRails::ProcessWebhookJob (Job ID: bf6a9b5f-fa33-4ff5-b8ba-cebf46efe391) from Test(default) with arguments: "DOCUMENT_OPENED", "env_777", {"envelopeId" => "env_777"}
+[ActiveJob] [DocumensoRails::ProcessWebhookJob] [bf6a9b5f-fa33-4ff5-b8ba-cebf46efe391]   [1m[36mLegalDocument Load (0.0ms)[0m  [1m[34mSELECT "legal_documents".* FROM "legal_documents" WHERE "legal_documents"."documenso_envelope_id" = ? LIMIT ?[0m  [["documenso_envelope_id", "env_777"], ["LIMIT", 1]]
+[ActiveJob] [DocumensoRails::ProcessWebhookJob] [bf6a9b5f-fa33-4ff5-b8ba-cebf46efe391] Performed DocumensoRails::ProcessWebhookJob (Job ID: bf6a9b5f-fa33-4ff5-b8ba-cebf46efe391) from Test(default) in 0.14ms
+  [1m[36mLegalDocument Load (0.0ms)[0m  [1m[34mSELECT "legal_documents".* FROM "legal_documents" WHERE "legal_documents"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mLegalDocument Create (0.1ms)[0m  [1m[32mINSERT INTO "legal_documents" ("title", "documenso_envelope_id", "signing_url", "signature_status", "signature_sent_at", "signature_completed_at", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["title", "Engagement Letter"], ["documenso_envelope_id", nil], ["signing_url", nil], ["signature_status", "draft"], ["signature_sent_at", nil], ["signature_completed_at", nil], ["created_at", "2026-11-27 03:38:46.392214"], ["updated_at", "2026-11-27 03:38:46.392214"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mActiveStorage::Attachment Load (0.0ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 1], ["record_type", "LegalDocument"], ["name", "unsigned_pdf"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mLegalDocument Create (0.1ms)[0m  [1m[32mINSERT INTO "legal_documents" ("title", "documenso_envelope_id", "signing_url", "signature_status", "signature_sent_at", "signature_completed_at", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["title", "Engagement Letter"], ["documenso_envelope_id", nil], ["signing_url", nil], ["signature_status", "draft"], ["signature_sent_at", nil], ["signature_completed_at", nil], ["created_at", "2026-11-27 03:38:46.393317"], ["updated_at", "2026-11-27 03:38:46.393317"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mActiveStorage::Blob Load (0.1ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" INNER JOIN "active_storage_attachments" ON "active_storage_blobs"."id" = "active_storage_attachments"."blob_id" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 1], ["record_type", "LegalDocument"], ["name", "unsigned_pdf"], ["LIMIT", 1]]
+  [1m[36mActiveStorage::Attachment Load (0.0ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 1], ["record_type", "LegalDocument"], ["name", "unsigned_pdf"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mLegalDocument Create (0.1ms)[0m  [1m[32mINSERT INTO "legal_documents" ("title", "documenso_envelope_id", "signing_url", "signature_status", "signature_sent_at", "signature_completed_at", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["title", "Engagement Letter"], ["documenso_envelope_id", nil], ["signing_url", nil], ["signature_status", "draft"], ["signature_sent_at", nil], ["signature_completed_at", nil], ["created_at", "2026-11-27 03:38:46.395213"], ["updated_at", "2026-11-27 03:38:46.395213"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mLegalDocument Update (0.1ms)[0m  [1m[33mUPDATE "legal_documents" SET "documenso_envelope_id" = ?, "signing_url" = ?, "signature_status" = ?, "signature_sent_at" = ?, "updated_at" = ? WHERE "legal_documents"."id" = ?[0m  [["documenso_envelope_id", "env_tpl_88"], ["signing_url", "https://app.documenso.com/sign/tok_88"], ["signature_status", "sent"], ["signature_sent_at", "2026-11-27 03:38:46.396056"], ["updated_at", "2026-11-27 03:38:46.396116"], ["id", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mLegalDocument Load (0.0ms)[0m  [1m[34mSELECT "legal_documents".* FROM "legal_documents" WHERE "legal_documents"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+Started POST "/documenso/webhook" for 127.0.0.1 at 2026-11-26 22:38:46 -0500
+Processing by DocumensoRails::WebhooksController#create as HTML
+  Parameters: {"event" => "DOCUMENT_COMPLETED", "payload" => {"envelopeId" => "env_555"}, "webhook" => {"event" => "DOCUMENT_COMPLETED", "payload" => {"envelopeId" => "env_555"}}}
+Filter chain halted as :verify_secret! rendered or redirected
+Completed 401 Unauthorized in 6ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+Started POST "/documenso/webhook" for 127.0.0.1 at 2026-11-26 22:38:46 -0500
+Processing by DocumensoRails::WebhooksController#create as HTML
+  Parameters: {"event" => "DOCUMENT_COMPLETED", "payload" => {"envelopeId" => "env_555"}, "webhook" => {"event" => "DOCUMENT_COMPLETED", "payload" => {"envelopeId" => "env_555"}}}
+[ActiveJob] Enqueued DocumensoRails::ProcessWebhookJob (Job ID: 4684f8f3-9fce-4258-8737-3043122990c0) to Test(default) with arguments: "DOCUMENT_COMPLETED", "env_555", {"envelopeId" => "env_555"}
+Completed 200 OK in 0ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+Generating image variants require the image_processing gem. Please add `gem "image_processing", "~> 1.2"` to your Gemfile or set `config.active_storage.variant_processor = :disabled`.
+  [1m[35m (1.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "active_storage_blobs"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "active_storage_blobs" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "key" varchar NOT NULL, "filename" varchar NOT NULL, "content_type" varchar, "metadata" text, "service_name" varchar NOT NULL, "byte_size" bigint NOT NULL, "checksum" varchar, "created_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_active_storage_blobs_on_key" ON "active_storage_blobs" ("key")[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE IF EXISTS "active_storage_attachments"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TABLE "active_storage_attachments" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar NOT NULL, "record_type" varchar NOT NULL, "record_id" integer NOT NULL, "blob_id" integer NOT NULL, "created_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_active_storage_attachments_on_blob_id" ON "active_storage_attachments" ("blob_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_active_storage_attachments_uniqueness" ON "active_storage_attachments" ("record_type", "record_id", "name", "blob_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE IF EXISTS "active_storage_variant_records"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TABLE "active_storage_variant_records" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "blob_id" integer NOT NULL, "variation_digest" varchar NOT NULL)[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_active_storage_variant_records_uniqueness" ON "active_storage_variant_records" ("blob_id", "variation_digest")[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE IF EXISTS "legal_documents"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TABLE "legal_documents" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "documenso_envelope_id" varchar, "signing_url" varchar, "signature_status" varchar DEFAULT 'draft' NOT NULL, "signature_sent_at" datetime(6), "signature_completed_at" datetime(6), "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.0ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (0.0ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'test', '2026-11-27 03:38:55.555551', '2026-11-27 03:38:55.555564') RETURNING "key"[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mLegalDocument Create (0.2ms)[0m  [1m[32mINSERT INTO "legal_documents" ("title", "documenso_envelope_id", "signing_url", "signature_status", "signature_sent_at", "signature_completed_at", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["title", "Engagement Letter"], ["documenso_envelope_id", nil], ["signing_url", nil], ["signature_status", "draft"], ["signature_sent_at", nil], ["signature_completed_at", nil], ["created_at", "2026-11-27 03:38:55.573301"], ["updated_at", "2026-11-27 03:38:55.573301"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mActiveStorage::Blob Load (0.1ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" INNER JOIN "active_storage_attachments" ON "active_storage_blobs"."id" = "active_storage_attachments"."blob_id" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 1], ["record_type", "LegalDocument"], ["name", "unsigned_pdf"], ["LIMIT", 1]]
+  [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 1], ["record_type", "LegalDocument"], ["name", "unsigned_pdf"], ["LIMIT", 1]]
+  [1m[36mActiveStorage::Blob Create (0.1ms)[0m  [1m[32mINSERT INTO "active_storage_blobs" ("key", "filename", "content_type", "metadata", "service_name", "byte_size", "checksum", "created_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["key", "jolai5j2oc9f2ddl8tfk5o2obakv"], ["filename", "engagement.pdf"], ["content_type", "application/pdf"], ["metadata", "{\"identified\":true}"], ["service_name", "test"], ["byte_size", 15], ["checksum", "4affjrPYrTqTNvwjwTUP8A=="], ["created_at", "2026-11-27 03:38:55.591240"]]
+  [1m[36mActiveStorage::Attachment Create (0.0ms)[0m  [1m[32mINSERT INTO "active_storage_attachments" ("name", "record_type", "record_id", "blob_id", "created_at") VALUES (?, ?, ?, ?, ?) RETURNING "id"[0m  [["name", "unsigned_pdf"], ["record_type", "LegalDocument"], ["record_id", 1], ["blob_id", 1], ["created_at", "2026-11-27 03:38:55.591642"]]
+  [1m[36mLegalDocument Update (0.0ms)[0m  [1m[33mUPDATE "legal_documents" SET "updated_at" = ? WHERE "legal_documents"."id" = ?[0m  [["updated_at", "2026-11-27 03:38:55.591874"], ["id", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+[36m  Disk Storage (0.4ms) [0m[32mUploaded file to key: jolai5j2oc9f2ddl8tfk5o2obakv (checksum: 4affjrPYrTqTNvwjwTUP8A==)[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mActiveStorage::Blob Update (0.1ms)[0m  [1m[33mUPDATE "active_storage_blobs" SET "metadata" = ? WHERE "active_storage_blobs"."id" = ?[0m  [["metadata", "{\"identified\":true,\"analyzed\":true}"], ["id", 1]]
+  [1m[36mActiveStorage::Attachment Load (0.0ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."blob_id" = ?[0m  [["blob_id", 1]]
+  [1m[36mLegalDocument Load (0.1ms)[0m  [1m[34mSELECT "legal_documents".* FROM "legal_documents" WHERE "legal_documents"."id" = ?[0m  [["id", 1]]
+  [1m[36mLegalDocument Update (0.0ms)[0m  [1m[33mUPDATE "legal_documents" SET "updated_at" = ? WHERE "legal_documents"."id" = ?[0m  [["updated_at", "2026-11-27 03:38:55.597262"], ["id", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 1], ["record_type", "ActiveStorage::Blob"], ["name", "preview_image"], ["LIMIT", 1]]
+[36m  Disk Storage (0.6ms) [0m[34mDownloaded file from key: jolai5j2oc9f2ddl8tfk5o2obakv[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mLegalDocument Update (0.3ms)[0m  [1m[33mUPDATE "legal_documents" SET "documenso_envelope_id" = ?, "signing_url" = ?, "signature_status" = ?, "signature_sent_at" = ?, "updated_at" = ? WHERE "legal_documents"."id" = ?[0m  [["documenso_envelope_id", "env_123"], ["signing_url", "https://app.documenso.com/sign/tok_123"], ["signature_status", "sent"], ["signature_sent_at", "2026-11-27 03:38:55.901563"], ["updated_at", "2026-11-27 03:38:55.901821"], ["id", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mLegalDocument Load (0.1ms)[0m  [1m[34mSELECT "legal_documents".* FROM "legal_documents" WHERE "legal_documents"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+Generating image variants require the image_processing gem. Please add `gem "image_processing", "~> 1.2"` to your Gemfile or set `config.active_storage.variant_processor = :disabled`.
+  [1m[35m (1.0ms)[0m  [1m[35mDROP TABLE IF EXISTS "active_storage_blobs"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "active_storage_blobs" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "key" varchar NOT NULL, "filename" varchar NOT NULL, "content_type" varchar, "metadata" text, "service_name" varchar NOT NULL, "byte_size" bigint NOT NULL, "checksum" varchar, "created_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_active_storage_blobs_on_key" ON "active_storage_blobs" ("key")[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE IF EXISTS "active_storage_attachments"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TABLE "active_storage_attachments" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar NOT NULL, "record_type" varchar NOT NULL, "record_id" integer NOT NULL, "blob_id" integer NOT NULL, "created_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_active_storage_attachments_on_blob_id" ON "active_storage_attachments" ("blob_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_active_storage_attachments_uniqueness" ON "active_storage_attachments" ("record_type", "record_id", "name", "blob_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE IF EXISTS "active_storage_variant_records"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TABLE "active_storage_variant_records" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "blob_id" integer NOT NULL, "variation_digest" varchar NOT NULL)[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_active_storage_variant_records_uniqueness" ON "active_storage_variant_records" ("blob_id", "variation_digest")[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE IF EXISTS "legal_documents"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TABLE "legal_documents" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "documenso_envelope_id" varchar, "signing_url" varchar, "signature_status" varchar DEFAULT 'draft' NOT NULL, "signature_sent_at" datetime(6), "signature_completed_at" datetime(6), "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (0.0ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'test', '2026-11-27 03:38:59.016827', '2026-11-27 03:38:59.016829') RETURNING "key"[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mLegalDocument Create (0.2ms)[0m  [1m[32mINSERT INTO "legal_documents" ("title", "documenso_envelope_id", "signing_url", "signature_status", "signature_sent_at", "signature_completed_at", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["title", "Client Fee Agreement"], ["documenso_envelope_id", "env_777"], ["signing_url", nil], ["signature_status", "sent"], ["signature_sent_at", nil], ["signature_completed_at", nil], ["created_at", "2026-11-27 03:38:59.039665"], ["updated_at", "2026-11-27 03:38:59.039665"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+[ActiveJob] [DocumensoRails::ProcessWebhookJob] [3d819946-2246-4732-8f78-bbe34bde1448] Performing DocumensoRails::ProcessWebhookJob (Job ID: 3d819946-2246-4732-8f78-bbe34bde1448) from Test(default) with arguments: "DOCUMENT_OPENED", "env_777", {"envelopeId" => "env_777"}
+[ActiveJob] [DocumensoRails::ProcessWebhookJob] [3d819946-2246-4732-8f78-bbe34bde1448]   [1m[36mLegalDocument Load (0.1ms)[0m  [1m[34mSELECT "legal_documents".* FROM "legal_documents" WHERE "legal_documents"."documenso_envelope_id" = ? LIMIT ?[0m  [["documenso_envelope_id", "env_777"], ["LIMIT", 1]]
+[ActiveJob] [DocumensoRails::ProcessWebhookJob] [3d819946-2246-4732-8f78-bbe34bde1448]   [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+[ActiveJob] [DocumensoRails::ProcessWebhookJob] [3d819946-2246-4732-8f78-bbe34bde1448]   [1m[36mLegalDocument Update (0.1ms)[0m  [1m[33mUPDATE "legal_documents" SET "signature_status" = ?, "updated_at" = ? WHERE "legal_documents"."id" = ?[0m  [["signature_status", "opened"], ["updated_at", "2026-11-27 03:38:59.043540"], ["id", 1]]
+[ActiveJob] [DocumensoRails::ProcessWebhookJob] [3d819946-2246-4732-8f78-bbe34bde1448]   [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+[ActiveJob] [DocumensoRails::ProcessWebhookJob] [3d819946-2246-4732-8f78-bbe34bde1448] Performed DocumensoRails::ProcessWebhookJob (Job ID: 3d819946-2246-4732-8f78-bbe34bde1448) from Test(default) in 3.53ms
+  [1m[36mLegalDocument Load (0.1ms)[0m  [1m[34mSELECT "legal_documents".* FROM "legal_documents" WHERE "legal_documents"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mLegalDocument Create (0.1ms)[0m  [1m[32mINSERT INTO "legal_documents" ("title", "documenso_envelope_id", "signing_url", "signature_status", "signature_sent_at", "signature_completed_at", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["title", "Client Fee Agreement"], ["documenso_envelope_id", "env_777"], ["signing_url", nil], ["signature_status", "sent"], ["signature_sent_at", nil], ["signature_completed_at", nil], ["created_at", "2026-11-27 03:38:59.045255"], ["updated_at", "2026-11-27 03:38:59.045255"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+[ActiveJob] [DocumensoRails::ProcessWebhookJob] [af829c34-c987-40cd-8e98-3969c4a1b2a4] Performing DocumensoRails::ProcessWebhookJob (Job ID: af829c34-c987-40cd-8e98-3969c4a1b2a4) from Test(default) with arguments: "DOCUMENT_COMPLETED", "env_777", {"envelopeId" => "env_777"}
+[ActiveJob] [DocumensoRails::ProcessWebhookJob] [af829c34-c987-40cd-8e98-3969c4a1b2a4]   [1m[36mLegalDocument Load (0.1ms)[0m  [1m[34mSELECT "legal_documents".* FROM "legal_documents" WHERE "legal_documents"."documenso_envelope_id" = ? LIMIT ?[0m  [["documenso_envelope_id", "env_777"], ["LIMIT", 1]]
+[ActiveJob] [DocumensoRails::ProcessWebhookJob] [af829c34-c987-40cd-8e98-3969c4a1b2a4]   [1m[36mActiveStorage::Attachment Load (0.0ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 1], ["record_type", "LegalDocument"], ["name", "signed_pdf"], ["LIMIT", 1]]
+[ActiveJob] [DocumensoRails::ProcessWebhookJob] [af829c34-c987-40cd-8e98-3969c4a1b2a4]   [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+[ActiveJob] [DocumensoRails::ProcessWebhookJob] [af829c34-c987-40cd-8e98-3969c4a1b2a4]   [1m[36mActiveStorage::Blob Load (0.2ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" INNER JOIN "active_storage_attachments" ON "active_storage_blobs"."id" = "active_storage_attachments"."blob_id" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 1], ["record_type", "LegalDocument"], ["name", "signed_pdf"], ["LIMIT", 1]]
+[ActiveJob] [DocumensoRails::ProcessWebhookJob] [af829c34-c987-40cd-8e98-3969c4a1b2a4]   [1m[36mActiveStorage::Blob Create (0.1ms)[0m  [1m[32mINSERT INTO "active_storage_blobs" ("key", "filename", "content_type", "metadata", "service_name", "byte_size", "checksum", "created_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["key", "h83p4tme3b5gqksbmxrr5sbyudc8"], ["filename", "signed_client-fee-agreement.pdf"], ["content_type", "application/pdf"], ["metadata", "{\"identified\":true}"], ["service_name", "test"], ["byte_size", 30], ["checksum", "Cd6cKb7x4qZYBqIyg47ITQ=="], ["created_at", "2026-11-27 03:38:59.067108"]]
+[ActiveJob] [DocumensoRails::ProcessWebhookJob] [af829c34-c987-40cd-8e98-3969c4a1b2a4]   [1m[36mActiveStorage::Attachment Create (0.1ms)[0m  [1m[32mINSERT INTO "active_storage_attachments" ("name", "record_type", "record_id", "blob_id", "created_at") VALUES (?, ?, ?, ?, ?) RETURNING "id"[0m  [["name", "signed_pdf"], ["record_type", "LegalDocument"], ["record_id", 1], ["blob_id", 1], ["created_at", "2026-11-27 03:38:59.067488"]]
+[ActiveJob] [DocumensoRails::ProcessWebhookJob] [af829c34-c987-40cd-8e98-3969c4a1b2a4]   [1m[36mLegalDocument Update (0.0ms)[0m  [1m[33mUPDATE "legal_documents" SET "updated_at" = ? WHERE "legal_documents"."id" = ?[0m  [["updated_at", "2026-11-27 03:38:59.068010"], ["id", 1]]
+[ActiveJob] [DocumensoRails::ProcessWebhookJob] [af829c34-c987-40cd-8e98-3969c4a1b2a4]   [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+[ActiveJob] [DocumensoRails::ProcessWebhookJob] [af829c34-c987-40cd-8e98-3969c4a1b2a4] [36m  Disk Storage (0.5ms) [0m[32mUploaded file to key: h83p4tme3b5gqksbmxrr5sbyudc8 (checksum: Cd6cKb7x4qZYBqIyg47ITQ==)[0m
+[ActiveJob] [DocumensoRails::ProcessWebhookJob] [af829c34-c987-40cd-8e98-3969c4a1b2a4]   [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+[ActiveJob] [DocumensoRails::ProcessWebhookJob] [af829c34-c987-40cd-8e98-3969c4a1b2a4]   [1m[36mActiveStorage::Blob Update (0.1ms)[0m  [1m[33mUPDATE "active_storage_blobs" SET "metadata" = ? WHERE "active_storage_blobs"."id" = ?[0m  [["metadata", "{\"identified\":true,\"analyzed\":true}"], ["id", 1]]
+[ActiveJob] [DocumensoRails::ProcessWebhookJob] [af829c34-c987-40cd-8e98-3969c4a1b2a4]   [1m[36mActiveStorage::Attachment Load (0.0ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."blob_id" = ?[0m  [["blob_id", 1]]
+[ActiveJob] [DocumensoRails::ProcessWebhookJob] [af829c34-c987-40cd-8e98-3969c4a1b2a4]   [1m[36mLegalDocument Load (0.0ms)[0m  [1m[34mSELECT "legal_documents".* FROM "legal_documents" WHERE "legal_documents"."id" = ?[0m  [["id", 1]]
+[ActiveJob] [DocumensoRails::ProcessWebhookJob] [af829c34-c987-40cd-8e98-3969c4a1b2a4]   [1m[36mLegalDocument Update (0.0ms)[0m  [1m[33mUPDATE "legal_documents" SET "updated_at" = ? WHERE "legal_documents"."id" = ?[0m  [["updated_at", "2026-11-27 03:38:59.072093"], ["id", 1]]
+[ActiveJob] [DocumensoRails::ProcessWebhookJob] [af829c34-c987-40cd-8e98-3969c4a1b2a4]   [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+[ActiveJob] [DocumensoRails::ProcessWebhookJob] [af829c34-c987-40cd-8e98-3969c4a1b2a4]   [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 1], ["record_type", "ActiveStorage::Blob"], ["name", "preview_image"], ["LIMIT", 1]]
+[ActiveJob] [DocumensoRails::ProcessWebhookJob] [af829c34-c987-40cd-8e98-3969c4a1b2a4]   [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+[ActiveJob] [DocumensoRails::ProcessWebhookJob] [af829c34-c987-40cd-8e98-3969c4a1b2a4]   [1m[36mLegalDocument Update (0.1ms)[0m  [1m[33mUPDATE "legal_documents" SET "signature_status" = ?, "signature_completed_at" = ?, "updated_at" = ? WHERE "legal_documents"."id" = ?[0m  [["signature_status", "completed"], ["signature_completed_at", "2026-11-27 03:38:59.090319"], ["updated_at", "2026-11-27 03:38:59.090492"], ["id", 1]]
+[ActiveJob] [DocumensoRails::ProcessWebhookJob] [af829c34-c987-40cd-8e98-3969c4a1b2a4]   [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+[ActiveJob] [DocumensoRails::ProcessWebhookJob] [af829c34-c987-40cd-8e98-3969c4a1b2a4] Performed DocumensoRails::ProcessWebhookJob (Job ID: af829c34-c987-40cd-8e98-3969c4a1b2a4) from Test(default) in 39.14ms
+  [1m[36mLegalDocument Load (0.0ms)[0m  [1m[34mSELECT "legal_documents".* FROM "legal_documents" WHERE "legal_documents"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mActiveStorage::Attachment Load (0.0ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 1], ["record_type", "LegalDocument"], ["name", "signed_pdf"], ["LIMIT", 1]]
+  [1m[36mActiveStorage::Blob Load (0.1ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[36m  Disk Storage (0.1ms) [0m[34mDownloaded file from key: h83p4tme3b5gqksbmxrr5sbyudc8[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mLegalDocument Create (0.1ms)[0m  [1m[32mINSERT INTO "legal_documents" ("title", "documenso_envelope_id", "signing_url", "signature_status", "signature_sent_at", "signature_completed_at", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["title", "Client Fee Agreement"], ["documenso_envelope_id", "env_777"], ["signing_url", nil], ["signature_status", "sent"], ["signature_sent_at", nil], ["signature_completed_at", nil], ["created_at", "2026-11-27 03:38:59.094358"], ["updated_at", "2026-11-27 03:38:59.094358"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mLegalDocument Update (0.1ms)[0m  [1m[33mUPDATE "legal_documents" SET "signature_status" = ?, "updated_at" = ? WHERE "legal_documents"."id" = ?[0m  [["signature_status", "completed"], ["updated_at", "2026-11-27 03:38:59.094840"], ["id", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+[ActiveJob] [DocumensoRails::ProcessWebhookJob] [3257c4b9-b8d8-4b36-a16b-14e8f2c6e151] Performing DocumensoRails::ProcessWebhookJob (Job ID: 3257c4b9-b8d8-4b36-a16b-14e8f2c6e151) from Test(default) with arguments: "DOCUMENT_OPENED", "env_777", {"envelopeId" => "env_777"}
+[ActiveJob] [DocumensoRails::ProcessWebhookJob] [3257c4b9-b8d8-4b36-a16b-14e8f2c6e151]   [1m[36mLegalDocument Load (0.0ms)[0m  [1m[34mSELECT "legal_documents".* FROM "legal_documents" WHERE "legal_documents"."documenso_envelope_id" = ? LIMIT ?[0m  [["documenso_envelope_id", "env_777"], ["LIMIT", 1]]
+[ActiveJob] [DocumensoRails::ProcessWebhookJob] [3257c4b9-b8d8-4b36-a16b-14e8f2c6e151] Performed DocumensoRails::ProcessWebhookJob (Job ID: 3257c4b9-b8d8-4b36-a16b-14e8f2c6e151) from Test(default) in 0.18ms
+  [1m[36mLegalDocument Load (0.0ms)[0m  [1m[34mSELECT "legal_documents".* FROM "legal_documents" WHERE "legal_documents"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mLegalDocument Create (0.1ms)[0m  [1m[32mINSERT INTO "legal_documents" ("title", "documenso_envelope_id", "signing_url", "signature_status", "signature_sent_at", "signature_completed_at", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["title", "Engagement Letter"], ["documenso_envelope_id", nil], ["signing_url", nil], ["signature_status", "draft"], ["signature_sent_at", nil], ["signature_completed_at", nil], ["created_at", "2026-11-27 03:38:59.100897"], ["updated_at", "2026-11-27 03:38:59.100897"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mActiveStorage::Attachment Load (0.0ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 1], ["record_type", "LegalDocument"], ["name", "unsigned_pdf"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mLegalDocument Create (0.1ms)[0m  [1m[32mINSERT INTO "legal_documents" ("title", "documenso_envelope_id", "signing_url", "signature_status", "signature_sent_at", "signature_completed_at", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["title", "Engagement Letter"], ["documenso_envelope_id", nil], ["signing_url", nil], ["signature_status", "draft"], ["signature_sent_at", nil], ["signature_completed_at", nil], ["created_at", "2026-11-27 03:38:59.101985"], ["updated_at", "2026-11-27 03:38:59.101985"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mActiveStorage::Blob Load (0.1ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" INNER JOIN "active_storage_attachments" ON "active_storage_blobs"."id" = "active_storage_attachments"."blob_id" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 1], ["record_type", "LegalDocument"], ["name", "unsigned_pdf"], ["LIMIT", 1]]
+  [1m[36mActiveStorage::Attachment Load (0.0ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 1], ["record_type", "LegalDocument"], ["name", "unsigned_pdf"], ["LIMIT", 1]]
+  [1m[36mActiveStorage::Blob Create (0.1ms)[0m  [1m[32mINSERT INTO "active_storage_blobs" ("key", "filename", "content_type", "metadata", "service_name", "byte_size", "checksum", "created_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["key", "bwcgnnvlmaowv3prxhk13l0rx4iw"], ["filename", "engagement.pdf"], ["content_type", "application/pdf"], ["metadata", "{\"identified\":true}"], ["service_name", "test"], ["byte_size", 15], ["checksum", "4affjrPYrTqTNvwjwTUP8A=="], ["created_at", "2026-11-27 03:38:59.103647"]]
+  [1m[36mActiveStorage::Attachment Create (0.0ms)[0m  [1m[32mINSERT INTO "active_storage_attachments" ("name", "record_type", "record_id", "blob_id", "created_at") VALUES (?, ?, ?, ?, ?) RETURNING "id"[0m  [["name", "unsigned_pdf"], ["record_type", "LegalDocument"], ["record_id", 1], ["blob_id", 1], ["created_at", "2026-11-27 03:38:59.103930"]]
+  [1m[36mLegalDocument Update (0.0ms)[0m  [1m[33mUPDATE "legal_documents" SET "updated_at" = ? WHERE "legal_documents"."id" = ?[0m  [["updated_at", "2026-11-27 03:38:59.104125"], ["id", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+[36m  Disk Storage (0.4ms) [0m[32mUploaded file to key: bwcgnnvlmaowv3prxhk13l0rx4iw (checksum: 4affjrPYrTqTNvwjwTUP8A==)[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mActiveStorage::Blob Update (0.1ms)[0m  [1m[33mUPDATE "active_storage_blobs" SET "metadata" = ? WHERE "active_storage_blobs"."id" = ?[0m  [["metadata", "{\"identified\":true,\"analyzed\":true}"], ["id", 1]]
+  [1m[36mActiveStorage::Attachment Load (0.0ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."blob_id" = ?[0m  [["blob_id", 1]]
+  [1m[36mLegalDocument Load (0.0ms)[0m  [1m[34mSELECT "legal_documents".* FROM "legal_documents" WHERE "legal_documents"."id" = ?[0m  [["id", 1]]
+  [1m[36mLegalDocument Update (0.0ms)[0m  [1m[33mUPDATE "legal_documents" SET "updated_at" = ? WHERE "legal_documents"."id" = ?[0m  [["updated_at", "2026-11-27 03:38:59.105738"], ["id", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mActiveStorage::Attachment Load (0.0ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 1], ["record_type", "ActiveStorage::Blob"], ["name", "preview_image"], ["LIMIT", 1]]
+[36m  Disk Storage (0.6ms) [0m[34mDownloaded file from key: bwcgnnvlmaowv3prxhk13l0rx4iw[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mLegalDocument Update (0.1ms)[0m  [1m[33mUPDATE "legal_documents" SET "documenso_envelope_id" = ?, "signing_url" = ?, "signature_status" = ?, "signature_sent_at" = ?, "updated_at" = ? WHERE "legal_documents"."id" = ?[0m  [["documenso_envelope_id", "env_123"], ["signing_url", "https://app.documenso.com/sign/tok_123"], ["signature_status", "sent"], ["signature_sent_at", "2026-11-27 03:38:59.108257"], ["updated_at", "2026-11-27 03:38:59.108379"], ["id", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mLegalDocument Load (0.0ms)[0m  [1m[34mSELECT "legal_documents".* FROM "legal_documents" WHERE "legal_documents"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mLegalDocument Create (0.1ms)[0m  [1m[32mINSERT INTO "legal_documents" ("title", "documenso_envelope_id", "signing_url", "signature_status", "signature_sent_at", "signature_completed_at", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["title", "Engagement Letter"], ["documenso_envelope_id", nil], ["signing_url", nil], ["signature_status", "draft"], ["signature_sent_at", nil], ["signature_completed_at", nil], ["created_at", "2026-11-27 03:38:59.109657"], ["updated_at", "2026-11-27 03:38:59.109657"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mLegalDocument Update (0.1ms)[0m  [1m[33mUPDATE "legal_documents" SET "documenso_envelope_id" = ?, "signing_url" = ?, "signature_status" = ?, "signature_sent_at" = ?, "updated_at" = ? WHERE "legal_documents"."id" = ?[0m  [["documenso_envelope_id", "env_tpl_88"], ["signing_url", "https://app.documenso.com/sign/tok_88"], ["signature_status", "sent"], ["signature_sent_at", "2026-11-27 03:38:59.110473"], ["updated_at", "2026-11-27 03:38:59.110554"], ["id", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mLegalDocument Load (0.0ms)[0m  [1m[34mSELECT "legal_documents".* FROM "legal_documents" WHERE "legal_documents"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+Started POST "/documenso/webhook" for 127.0.0.1 at 2026-11-26 22:38:59 -0500
+Processing by DocumensoRails::WebhooksController#create as HTML
+  Parameters: {"event" => "DOCUMENT_COMPLETED", "payload" => {"envelopeId" => "env_555"}, "webhook" => {"event" => "DOCUMENT_COMPLETED", "payload" => {"envelopeId" => "env_555"}}}
+Filter chain halted as :verify_secret! rendered or redirected
+Completed 401 Unauthorized in 6ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+Started POST "/documenso/webhook" for 127.0.0.1 at 2026-11-26 22:38:59 -0500
+Processing by DocumensoRails::WebhooksController#create as HTML
+  Parameters: {"event" => "DOCUMENT_COMPLETED", "payload" => {"envelopeId" => "env_555"}, "webhook" => {"event" => "DOCUMENT_COMPLETED", "payload" => {"envelopeId" => "env_555"}}}
+[ActiveJob] Enqueued DocumensoRails::ProcessWebhookJob (Job ID: 914eba3b-4bae-4f7d-9320-5192b60086c6) to Test(default) with arguments: "DOCUMENT_COMPLETED", "env_555", {"envelopeId" => "env_555"}
+Completed 200 OK in 0ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+Generating image variants require the image_processing gem. Please add `gem "image_processing", "~> 1.2"` to your Gemfile or set `config.active_storage.variant_processor = :disabled`.
+  [1m[35m (4.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "active_storage_blobs"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "active_storage_blobs" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "key" varchar NOT NULL, "filename" varchar NOT NULL, "content_type" varchar, "metadata" text, "service_name" varchar NOT NULL, "byte_size" bigint NOT NULL, "checksum" varchar, "created_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_active_storage_blobs_on_key" ON "active_storage_blobs" ("key")[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE IF EXISTS "active_storage_attachments"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TABLE "active_storage_attachments" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar NOT NULL, "record_type" varchar NOT NULL, "record_id" integer NOT NULL, "blob_id" integer NOT NULL, "created_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_active_storage_attachments_on_blob_id" ON "active_storage_attachments" ("blob_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_active_storage_attachments_uniqueness" ON "active_storage_attachments" ("record_type", "record_id", "name", "blob_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE IF EXISTS "active_storage_variant_records"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TABLE "active_storage_variant_records" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "blob_id" integer NOT NULL, "variation_digest" varchar NOT NULL)[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_active_storage_variant_records_uniqueness" ON "active_storage_variant_records" ("blob_id", "variation_digest")[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE IF EXISTS "legal_documents"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TABLE "legal_documents" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "documenso_envelope_id" varchar, "signing_url" varchar, "signature_status" varchar DEFAULT 'draft' NOT NULL, "signature_sent_at" datetime(6), "signature_completed_at" datetime(6), "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.0ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (0.0ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'test', '2026-11-27 03:59:29.761943', '2026-11-27 03:59:29.761944') RETURNING "key"[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mLegalDocument Create (0.3ms)[0m  [1m[32mINSERT INTO "legal_documents" ("title", "documenso_envelope_id", "signing_url", "signature_status", "signature_sent_at", "signature_completed_at", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["title", "Client Fee Agreement"], ["documenso_envelope_id", "env_777"], ["signing_url", nil], ["signature_status", "sent"], ["signature_sent_at", nil], ["signature_completed_at", nil], ["created_at", "2026-11-27 03:59:29.789725"], ["updated_at", "2026-11-27 03:59:29.789725"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+[ActiveJob] [DocumensoRails::ProcessWebhookJob] [dc483dc3-98d0-4131-94a1-312c7b671cc9] Performing DocumensoRails::ProcessWebhookJob (Job ID: dc483dc3-98d0-4131-94a1-312c7b671cc9) from Test(default) with arguments: "DOCUMENT_OPENED", "env_777", {"envelopeId" => "env_777"}
+[ActiveJob] [DocumensoRails::ProcessWebhookJob] [dc483dc3-98d0-4131-94a1-312c7b671cc9]   [1m[36mLegalDocument Load (0.1ms)[0m  [1m[34mSELECT "legal_documents".* FROM "legal_documents" WHERE "legal_documents"."documenso_envelope_id" = ? LIMIT ?[0m  [["documenso_envelope_id", "env_777"], ["LIMIT", 1]]
+[ActiveJob] [DocumensoRails::ProcessWebhookJob] [dc483dc3-98d0-4131-94a1-312c7b671cc9]   [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+[ActiveJob] [DocumensoRails::ProcessWebhookJob] [dc483dc3-98d0-4131-94a1-312c7b671cc9]   [1m[36mLegalDocument Update (0.1ms)[0m  [1m[33mUPDATE "legal_documents" SET "signature_status" = ?, "updated_at" = ? WHERE "legal_documents"."id" = ?[0m  [["signature_status", "opened"], ["updated_at", "2026-11-27 03:59:29.795168"], ["id", 1]]
+[ActiveJob] [DocumensoRails::ProcessWebhookJob] [dc483dc3-98d0-4131-94a1-312c7b671cc9]   [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+[ActiveJob] [DocumensoRails::ProcessWebhookJob] [dc483dc3-98d0-4131-94a1-312c7b671cc9] Performed DocumensoRails::ProcessWebhookJob (Job ID: dc483dc3-98d0-4131-94a1-312c7b671cc9) from Test(default) in 4.92ms
+  [1m[36mLegalDocument Load (0.0ms)[0m  [1m[34mSELECT "legal_documents".* FROM "legal_documents" WHERE "legal_documents"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mLegalDocument Create (0.1ms)[0m  [1m[32mINSERT INTO "legal_documents" ("title", "documenso_envelope_id", "signing_url", "signature_status", "signature_sent_at", "signature_completed_at", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["title", "Client Fee Agreement"], ["documenso_envelope_id", "env_777"], ["signing_url", nil], ["signature_status", "sent"], ["signature_sent_at", nil], ["signature_completed_at", nil], ["created_at", "2026-11-27 03:59:29.797470"], ["updated_at", "2026-11-27 03:59:29.797470"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+[ActiveJob] [DocumensoRails::ProcessWebhookJob] [73ec20de-5ed6-4d13-a0cc-e86a8a763214] Performing DocumensoRails::ProcessWebhookJob (Job ID: 73ec20de-5ed6-4d13-a0cc-e86a8a763214) from Test(default) with arguments: "DOCUMENT_COMPLETED", "env_777", {"envelopeId" => "env_777"}
+[ActiveJob] [DocumensoRails::ProcessWebhookJob] [73ec20de-5ed6-4d13-a0cc-e86a8a763214]   [1m[36mLegalDocument Load (0.0ms)[0m  [1m[34mSELECT "legal_documents".* FROM "legal_documents" WHERE "legal_documents"."documenso_envelope_id" = ? LIMIT ?[0m  [["documenso_envelope_id", "env_777"], ["LIMIT", 1]]
+[ActiveJob] [DocumensoRails::ProcessWebhookJob] [73ec20de-5ed6-4d13-a0cc-e86a8a763214]   [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 1], ["record_type", "LegalDocument"], ["name", "signed_pdf"], ["LIMIT", 1]]
+[ActiveJob] [DocumensoRails::ProcessWebhookJob] [73ec20de-5ed6-4d13-a0cc-e86a8a763214]   [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+[ActiveJob] [DocumensoRails::ProcessWebhookJob] [73ec20de-5ed6-4d13-a0cc-e86a8a763214]   [1m[36mActiveStorage::Blob Load (0.2ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" INNER JOIN "active_storage_attachments" ON "active_storage_blobs"."id" = "active_storage_attachments"."blob_id" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 1], ["record_type", "LegalDocument"], ["name", "signed_pdf"], ["LIMIT", 1]]
+[ActiveJob] [DocumensoRails::ProcessWebhookJob] [73ec20de-5ed6-4d13-a0cc-e86a8a763214]   [1m[36mActiveStorage::Blob Create (0.2ms)[0m  [1m[32mINSERT INTO "active_storage_blobs" ("key", "filename", "content_type", "metadata", "service_name", "byte_size", "checksum", "created_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["key", "msiayg4ha9i076jx2cxti7uvgqjh"], ["filename", "signed_client-fee-agreement.pdf"], ["content_type", "application/pdf"], ["metadata", "{\"identified\":true}"], ["service_name", "test"], ["byte_size", 30], ["checksum", "Cd6cKb7x4qZYBqIyg47ITQ=="], ["created_at", "2026-11-27 03:59:29.825902"]]
+[ActiveJob] [DocumensoRails::ProcessWebhookJob] [73ec20de-5ed6-4d13-a0cc-e86a8a763214]   [1m[36mActiveStorage::Attachment Create (0.0ms)[0m  [1m[32mINSERT INTO "active_storage_attachments" ("name", "record_type", "record_id", "blob_id", "created_at") VALUES (?, ?, ?, ?, ?) RETURNING "id"[0m  [["name", "signed_pdf"], ["record_type", "LegalDocument"], ["record_id", 1], ["blob_id", 1], ["created_at", "2026-11-27 03:59:29.826651"]]
+[ActiveJob] [DocumensoRails::ProcessWebhookJob] [73ec20de-5ed6-4d13-a0cc-e86a8a763214]   [1m[36mLegalDocument Update (0.0ms)[0m  [1m[33mUPDATE "legal_documents" SET "updated_at" = ? WHERE "legal_documents"."id" = ?[0m  [["updated_at", "2026-11-27 03:59:29.826948"], ["id", 1]]
+[ActiveJob] [DocumensoRails::ProcessWebhookJob] [73ec20de-5ed6-4d13-a0cc-e86a8a763214]   [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+[ActiveJob] [DocumensoRails::ProcessWebhookJob] [73ec20de-5ed6-4d13-a0cc-e86a8a763214] [36m  Disk Storage (0.5ms) [0m[32mUploaded file to key: msiayg4ha9i076jx2cxti7uvgqjh (checksum: Cd6cKb7x4qZYBqIyg47ITQ==)[0m
+[ActiveJob] [DocumensoRails::ProcessWebhookJob] [73ec20de-5ed6-4d13-a0cc-e86a8a763214]   [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+[ActiveJob] [DocumensoRails::ProcessWebhookJob] [73ec20de-5ed6-4d13-a0cc-e86a8a763214]   [1m[36mActiveStorage::Blob Update (0.1ms)[0m  [1m[33mUPDATE "active_storage_blobs" SET "metadata" = ? WHERE "active_storage_blobs"."id" = ?[0m  [["metadata", "{\"identified\":true,\"analyzed\":true}"], ["id", 1]]
+[ActiveJob] [DocumensoRails::ProcessWebhookJob] [73ec20de-5ed6-4d13-a0cc-e86a8a763214]   [1m[36mActiveStorage::Attachment Load (0.0ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."blob_id" = ?[0m  [["blob_id", 1]]
+[ActiveJob] [DocumensoRails::ProcessWebhookJob] [73ec20de-5ed6-4d13-a0cc-e86a8a763214]   [1m[36mLegalDocument Load (0.1ms)[0m  [1m[34mSELECT "legal_documents".* FROM "legal_documents" WHERE "legal_documents"."id" = ?[0m  [["id", 1]]
+[ActiveJob] [DocumensoRails::ProcessWebhookJob] [73ec20de-5ed6-4d13-a0cc-e86a8a763214]   [1m[36mLegalDocument Update (0.0ms)[0m  [1m[33mUPDATE "legal_documents" SET "updated_at" = ? WHERE "legal_documents"."id" = ?[0m  [["updated_at", "2026-11-27 03:59:29.832533"], ["id", 1]]
+[ActiveJob] [DocumensoRails::ProcessWebhookJob] [73ec20de-5ed6-4d13-a0cc-e86a8a763214]   [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+[ActiveJob] [DocumensoRails::ProcessWebhookJob] [73ec20de-5ed6-4d13-a0cc-e86a8a763214]   [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 1], ["record_type", "ActiveStorage::Blob"], ["name", "preview_image"], ["LIMIT", 1]]
+[ActiveJob] [DocumensoRails::ProcessWebhookJob] [73ec20de-5ed6-4d13-a0cc-e86a8a763214]   [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+[ActiveJob] [DocumensoRails::ProcessWebhookJob] [73ec20de-5ed6-4d13-a0cc-e86a8a763214]   [1m[36mLegalDocument Update (0.3ms)[0m  [1m[33mUPDATE "legal_documents" SET "signature_status" = ?, "signature_completed_at" = ?, "updated_at" = ? WHERE "legal_documents"."id" = ?[0m  [["signature_status", "completed"], ["signature_completed_at", "2026-11-27 03:59:29.869335"], ["updated_at", "2026-11-27 03:59:29.869546"], ["id", 1]]
+[ActiveJob] [DocumensoRails::ProcessWebhookJob] [73ec20de-5ed6-4d13-a0cc-e86a8a763214]   [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+[ActiveJob] [DocumensoRails::ProcessWebhookJob] [73ec20de-5ed6-4d13-a0cc-e86a8a763214] Performed DocumensoRails::ProcessWebhookJob (Job ID: 73ec20de-5ed6-4d13-a0cc-e86a8a763214) from Test(default) in 64.65ms
+  [1m[36mLegalDocument Load (0.0ms)[0m  [1m[34mSELECT "legal_documents".* FROM "legal_documents" WHERE "legal_documents"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mActiveStorage::Attachment Load (0.0ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 1], ["record_type", "LegalDocument"], ["name", "signed_pdf"], ["LIMIT", 1]]
+  [1m[36mActiveStorage::Blob Load (0.1ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[36m  Disk Storage (2.8ms) [0m[34mDownloaded file from key: msiayg4ha9i076jx2cxti7uvgqjh[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mLegalDocument Create (0.2ms)[0m  [1m[32mINSERT INTO "legal_documents" ("title", "documenso_envelope_id", "signing_url", "signature_status", "signature_sent_at", "signature_completed_at", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["title", "Client Fee Agreement"], ["documenso_envelope_id", "env_777"], ["signing_url", nil], ["signature_status", "sent"], ["signature_sent_at", nil], ["signature_completed_at", nil], ["created_at", "2026-11-27 03:59:29.877220"], ["updated_at", "2026-11-27 03:59:29.877220"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mLegalDocument Update (0.1ms)[0m  [1m[33mUPDATE "legal_documents" SET "signature_status" = ?, "updated_at" = ? WHERE "legal_documents"."id" = ?[0m  [["signature_status", "completed"], ["updated_at", "2026-11-27 03:59:29.877834"], ["id", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+[ActiveJob] [DocumensoRails::ProcessWebhookJob] [fb199ee0-c9b7-488f-8116-a8190df2a75a] Performing DocumensoRails::ProcessWebhookJob (Job ID: fb199ee0-c9b7-488f-8116-a8190df2a75a) from Test(default) with arguments: "DOCUMENT_OPENED", "env_777", {"envelopeId" => "env_777"}
+[ActiveJob] [DocumensoRails::ProcessWebhookJob] [fb199ee0-c9b7-488f-8116-a8190df2a75a]   [1m[36mLegalDocument Load (0.0ms)[0m  [1m[34mSELECT "legal_documents".* FROM "legal_documents" WHERE "legal_documents"."documenso_envelope_id" = ? LIMIT ?[0m  [["documenso_envelope_id", "env_777"], ["LIMIT", 1]]
+[ActiveJob] [DocumensoRails::ProcessWebhookJob] [fb199ee0-c9b7-488f-8116-a8190df2a75a] Performed DocumensoRails::ProcessWebhookJob (Job ID: fb199ee0-c9b7-488f-8116-a8190df2a75a) from Test(default) in 0.17ms
+  [1m[36mLegalDocument Load (0.0ms)[0m  [1m[34mSELECT "legal_documents".* FROM "legal_documents" WHERE "legal_documents"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mLegalDocument Create (0.1ms)[0m  [1m[32mINSERT INTO "legal_documents" ("title", "documenso_envelope_id", "signing_url", "signature_status", "signature_sent_at", "signature_completed_at", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["title", "Engagement Letter"], ["documenso_envelope_id", nil], ["signing_url", nil], ["signature_status", "draft"], ["signature_sent_at", nil], ["signature_completed_at", nil], ["created_at", "2026-11-27 03:59:29.885243"], ["updated_at", "2026-11-27 03:59:29.885243"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mActiveStorage::Attachment Load (0.0ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 1], ["record_type", "LegalDocument"], ["name", "unsigned_pdf"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mLegalDocument Create (0.1ms)[0m  [1m[32mINSERT INTO "legal_documents" ("title", "documenso_envelope_id", "signing_url", "signature_status", "signature_sent_at", "signature_completed_at", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["title", "Engagement Letter"], ["documenso_envelope_id", nil], ["signing_url", nil], ["signature_status", "draft"], ["signature_sent_at", nil], ["signature_completed_at", nil], ["created_at", "2026-11-27 03:59:29.886595"], ["updated_at", "2026-11-27 03:59:29.886595"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mActiveStorage::Blob Load (0.1ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" INNER JOIN "active_storage_attachments" ON "active_storage_blobs"."id" = "active_storage_attachments"."blob_id" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 1], ["record_type", "LegalDocument"], ["name", "unsigned_pdf"], ["LIMIT", 1]]
+  [1m[36mActiveStorage::Attachment Load (0.0ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 1], ["record_type", "LegalDocument"], ["name", "unsigned_pdf"], ["LIMIT", 1]]
+  [1m[36mActiveStorage::Blob Create (0.1ms)[0m  [1m[32mINSERT INTO "active_storage_blobs" ("key", "filename", "content_type", "metadata", "service_name", "byte_size", "checksum", "created_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["key", "f43n6s2pn92o5qv5u0eo0c9szw10"], ["filename", "engagement.pdf"], ["content_type", "application/pdf"], ["metadata", "{\"identified\":true}"], ["service_name", "test"], ["byte_size", 15], ["checksum", "4affjrPYrTqTNvwjwTUP8A=="], ["created_at", "2026-11-27 03:59:29.888293"]]
+  [1m[36mActiveStorage::Attachment Create (0.0ms)[0m  [1m[32mINSERT INTO "active_storage_attachments" ("name", "record_type", "record_id", "blob_id", "created_at") VALUES (?, ?, ?, ?, ?) RETURNING "id"[0m  [["name", "unsigned_pdf"], ["record_type", "LegalDocument"], ["record_id", 1], ["blob_id", 1], ["created_at", "2026-11-27 03:59:29.888617"]]
+  [1m[36mLegalDocument Update (0.0ms)[0m  [1m[33mUPDATE "legal_documents" SET "updated_at" = ? WHERE "legal_documents"."id" = ?[0m  [["updated_at", "2026-11-27 03:59:29.888815"], ["id", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+[36m  Disk Storage (0.4ms) [0m[32mUploaded file to key: f43n6s2pn92o5qv5u0eo0c9szw10 (checksum: 4affjrPYrTqTNvwjwTUP8A==)[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mActiveStorage::Blob Update (0.1ms)[0m  [1m[33mUPDATE "active_storage_blobs" SET "metadata" = ? WHERE "active_storage_blobs"."id" = ?[0m  [["metadata", "{\"identified\":true,\"analyzed\":true}"], ["id", 1]]
+  [1m[36mActiveStorage::Attachment Load (0.0ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."blob_id" = ?[0m  [["blob_id", 1]]
+  [1m[36mLegalDocument Load (0.0ms)[0m  [1m[34mSELECT "legal_documents".* FROM "legal_documents" WHERE "legal_documents"."id" = ?[0m  [["id", 1]]
+  [1m[36mLegalDocument Update (0.0ms)[0m  [1m[33mUPDATE "legal_documents" SET "updated_at" = ? WHERE "legal_documents"."id" = ?[0m  [["updated_at", "2026-11-27 03:59:29.890453"], ["id", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mActiveStorage::Attachment Load (0.0ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 1], ["record_type", "ActiveStorage::Blob"], ["name", "preview_image"], ["LIMIT", 1]]
+[36m  Disk Storage (0.7ms) [0m[34mDownloaded file from key: f43n6s2pn92o5qv5u0eo0c9szw10[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mLegalDocument Update (0.1ms)[0m  [1m[33mUPDATE "legal_documents" SET "documenso_envelope_id" = ?, "signing_url" = ?, "signature_status" = ?, "signature_sent_at" = ?, "updated_at" = ? WHERE "legal_documents"."id" = ?[0m  [["documenso_envelope_id", "env_123"], ["signing_url", "https://app.documenso.com/sign/tok_123"], ["signature_status", "sent"], ["signature_sent_at", "2026-11-27 03:59:29.893453"], ["updated_at", "2026-11-27 03:59:29.893611"], ["id", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mLegalDocument Load (0.0ms)[0m  [1m[34mSELECT "legal_documents".* FROM "legal_documents" WHERE "legal_documents"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mLegalDocument Create (0.1ms)[0m  [1m[32mINSERT INTO "legal_documents" ("title", "documenso_envelope_id", "signing_url", "signature_status", "signature_sent_at", "signature_completed_at", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["title", "Engagement Letter"], ["documenso_envelope_id", nil], ["signing_url", nil], ["signature_status", "draft"], ["signature_sent_at", nil], ["signature_completed_at", nil], ["created_at", "2026-11-27 03:59:29.895288"], ["updated_at", "2026-11-27 03:59:29.895288"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mLegalDocument Update (0.1ms)[0m  [1m[33mUPDATE "legal_documents" SET "documenso_envelope_id" = ?, "signing_url" = ?, "signature_status" = ?, "signature_sent_at" = ?, "updated_at" = ? WHERE "legal_documents"."id" = ?[0m  [["documenso_envelope_id", "env_tpl_88"], ["signing_url", "https://app.documenso.com/sign/tok_88"], ["signature_status", "sent"], ["signature_sent_at", "2026-11-27 03:59:29.896287"], ["updated_at", "2026-11-27 03:59:29.896361"], ["id", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mLegalDocument Load (0.0ms)[0m  [1m[34mSELECT "legal_documents".* FROM "legal_documents" WHERE "legal_documents"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+Started POST "/documenso/webhook" for 127.0.0.1 at 2026-11-26 22:59:29 -0500
+Processing by DocumensoRails::WebhooksController#create as HTML
+  Parameters: {"event" => "DOCUMENT_COMPLETED", "payload" => {"envelopeId" => "env_555"}, "webhook" => {"event" => "DOCUMENT_COMPLETED", "payload" => {"envelopeId" => "env_555"}}}
+Filter chain halted as :verify_secret! rendered or redirected
+Completed 401 Unauthorized in 7ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+Started POST "/documenso/webhook" for 127.0.0.1 at 2026-11-26 22:59:29 -0500
+Processing by DocumensoRails::WebhooksController#create as HTML
+  Parameters: {"event" => "DOCUMENT_COMPLETED", "payload" => {"envelopeId" => "env_555"}, "webhook" => {"event" => "DOCUMENT_COMPLETED", "payload" => {"envelopeId" => "env_555"}}}
+[ActiveJob] Enqueued DocumensoRails::ProcessWebhookJob (Job ID: 73a3ee62-2dbb-402e-834f-6c1c46d055c9) to Test(default) with arguments: "DOCUMENT_COMPLETED", "env_555", {"envelopeId" => "env_555"}
+Completed 200 OK in 0ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
