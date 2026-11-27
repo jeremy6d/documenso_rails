@@ -3,7 +3,7 @@ require_relative "lib/documenso_rails/version"
 Gem::Specification.new do |spec|
   spec.name                  = "documenso_rails"
   spec.version               = DocumensoRails::VERSION
-  spec.authors               = ["Your Law Firm"]
+  spec.authors               = ["Jeremy Weiland"]
   spec.summary               = "Production Rails Engine & API v2 client for Documenso Cloud"
   spec.required_ruby_version = ">= 3.1.0"
 
