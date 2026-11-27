@@ -19,11 +19,11 @@ module DocumensoRails
       unsigned_attachment = public_send(DocumensoRails.configuration.unsigned_attachment_name)
       raise Error, "No unsigned PDF attached to #{self.class.name}##{id}" unless unsigned_attachment.attached?
 
-      envelope_id = nil
+      result = nil
       target_redirect = redirect_url || DocumensoRails.configuration.redirect_url
 
       unsigned_attachment.open do |tempfile|
-        envelope_id = DocumensoRails.client.create_and_send(
+        result = DocumensoRails.client.create_and_send(
           file_io:      tempfile,
           filename:     "#{id}.pdf",
           title:        try(:title) || "Document ##{id}",
@@ -33,19 +33,14 @@ module DocumensoRails
         )
       end
 
-      update!(
-        documenso_envelope_id: envelope_id,
-        signature_status:      "sent",
-        signature_sent_at:     Time.current
-      )
-
-      envelope_id
+      apply_send_result!(result)
+      result
     end
 
     def send_from_template!(template_id:, signers:, prefill_fields: {}, title: nil, redirect_url: nil)
       target_redirect = redirect_url || DocumensoRails.configuration.redirect_url
 
-      envelope_id = DocumensoRails.client.create_and_send_from_template(
+      result = DocumensoRails.client.create_and_send_from_template(
         template_id:    template_id,
         signers:        signers,
         prefill_fields: prefill_fields,
@@ -53,13 +48,20 @@ module DocumensoRails
         redirect_url:   target_redirect
       )
 
-      update!(
-        documenso_envelope_id: envelope_id,
+      apply_send_result!(result)
+      result
+    end
+
+    private
+
+    def apply_send_result!(result)
+      attrs = {
+        documenso_envelope_id: result.envelope_id,
         signature_status:      "sent",
         signature_sent_at:     Time.current
-      )
-
-      envelope_id
+      }
+      attrs[:signing_url] = result.signing_url if has_attribute?(:signing_url)
+      update!(attrs)
     end
   end
 end

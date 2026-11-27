@@ -18,9 +18,8 @@ module DocumensoRails
         redirect_url: redirect_url
       )
       envelope_id = envelope.fetch("id")
-
-      distribute_envelope(envelope_id)
-      envelope_id
+      distribute_result = distribute_envelope(envelope_id)
+      build_send_result(envelope_id, distribute_result)
     end
 
     def create_and_send_from_template(template_id:, signers:, prefill_fields: {}, title: nil, redirect_url: nil)
@@ -32,9 +31,8 @@ module DocumensoRails
         redirect_url:   redirect_url
       )
       envelope_id = envelope.fetch("id")
-
-      distribute_envelope(envelope_id)
-      envelope_id
+      distribute_result = distribute_envelope(envelope_id)
+      build_send_result(envelope_id, distribute_result)
     end
 
     def create_envelope(file_io:, filename:, title:, signers:, fields:, redirect_url: nil)
@@ -115,7 +113,8 @@ module DocumensoRails
       request["Content-Type"]  = "application/json"
       request.body             = { envelopeId: envelope_id }.to_json
 
-      execute(uri, request)
+      body = execute(uri, request).body
+      body.present? ? JSON.parse(body) : {}
     end
 
     def download_signed_pdf(envelope_id)
@@ -127,6 +126,19 @@ module DocumensoRails
     end
 
     private
+
+    def build_send_result(envelope_id, distribute_payload)
+      raw_recipients = Array(distribute_payload["recipients"] || distribute_payload[:recipients])
+      recipients = raw_recipients.map do |recipient|
+        {
+          email:       recipient["email"] || recipient[:email],
+          name:        recipient["name"] || recipient[:name],
+          signing_url: recipient["signingUrl"] || recipient[:signingUrl] || recipient["signing_url"]
+        }
+      end
+
+      SendResult.new(envelope_id: envelope_id, recipients: recipients, raw: distribute_payload)
+    end
 
     def execute(uri, request)
       response = Net::HTTP.start(uri.hostname, uri.port, use_ssl: uri.scheme == "https") do |http|

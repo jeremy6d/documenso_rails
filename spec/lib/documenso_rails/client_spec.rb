@@ -16,9 +16,21 @@ RSpec.describe DocumensoRails::Client do
           headers: { "Authorization" => "api_test_token_123", "Content-Type" => "application/json" },
           body: { envelopeId: "env_999" }.to_json
         )
-        .to_return(status: 200, body: { success: true }.to_json)
+        .to_return(
+          status: 200,
+          body: {
+            id: "env_999",
+            recipients: [
+              {
+                email: "jane@example.com",
+                name: "Jane Client",
+                signingUrl: "https://app.documenso.com/sign/tok_abc"
+              }
+            ]
+          }.to_json
+        )
 
-      envelope_id = client.create_and_send(
+      result = client.create_and_send(
         file_io:  StringIO.new("%PDF-1.4 fake pdf"),
         filename: "retainer.pdf",
         title:    "Client Retainer",
@@ -26,7 +38,10 @@ RSpec.describe DocumensoRails::Client do
         fields:   [{ type: "SIGNATURE", page: 1, x: 15, y: 80 }]
       )
 
-      expect(envelope_id).to eq("env_999")
+      expect(result).to be_a(DocumensoRails::SendResult)
+      expect(result.envelope_id).to eq("env_999")
+      expect(result.signing_url).to eq("https://app.documenso.com/sign/tok_abc")
+      expect(result.recipients.first[:email]).to eq("jane@example.com")
       expect(create_stub).to have_been_requested
       expect(distribute_stub).to have_been_requested
     end
@@ -63,9 +78,17 @@ RSpec.describe DocumensoRails::Client do
 
       distribute_stub = stub_request(:post, "https://app.documenso.com/api/v2/envelope/distribute")
         .with(body: { envelopeId: "env_tpl_42" }.to_json)
-        .to_return(status: 200, body: { success: true }.to_json)
+        .to_return(
+          status: 200,
+          body: {
+            id: "env_tpl_42",
+            recipients: [
+              { email: "jane@example.com", signingUrl: "https://app.documenso.com/sign/tok_tpl" }
+            ]
+          }.to_json
+        )
 
-      envelope_id = client.create_and_send_from_template(
+      result = client.create_and_send_from_template(
         template_id:    42,
         signers:        [{ name: "Jane Client", email: "jane@example.com" }],
         prefill_fields: { fee_amount: "$2,500" },
@@ -73,7 +96,8 @@ RSpec.describe DocumensoRails::Client do
         redirect_url:   "https://secure.lawpay.com/pages/firm/trust"
       )
 
-      expect(envelope_id).to eq("env_tpl_42")
+      expect(result.envelope_id).to eq("env_tpl_42")
+      expect(result.signing_url).to eq("https://app.documenso.com/sign/tok_tpl")
       expect(use_stub).to have_been_requested
       expect(distribute_stub).to have_been_requested
     end

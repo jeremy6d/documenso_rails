@@ -20,12 +20,21 @@ RSpec.describe DocumensoRails::Model do
       stub_request(:post, "https://app.documenso.com/api/v2/envelope/create")
         .to_return(status: 200, body: { id: "env_123" }.to_json)
       stub_request(:post, "https://app.documenso.com/api/v2/envelope/distribute")
-        .to_return(status: 200, body: { success: true }.to_json)
+        .to_return(
+          status: 200,
+          body: {
+            id: "env_123",
+            recipients: [{ email: "jane@example.com", signingUrl: "https://app.documenso.com/sign/tok_123" }]
+          }.to_json
+        )
 
-      doc.send_for_signature!(signer_name: "Jane Client", signer_email: "jane@example.com")
+      result = doc.send_for_signature!(signer_name: "Jane Client", signer_email: "jane@example.com")
 
       doc.reload
+      expect(result).to be_a(DocumensoRails::SendResult)
+      expect(result.signing_url).to eq("https://app.documenso.com/sign/tok_123")
       expect(doc.documenso_envelope_id).to eq("env_123")
+      expect(doc.signing_url).to eq("https://app.documenso.com/sign/tok_123")
       expect(doc.signature_status).to eq("sent")
       expect(doc.signature_sent_at).to be_present
     end
@@ -36,16 +45,24 @@ RSpec.describe DocumensoRails::Model do
       stub_request(:post, "https://app.documenso.com/api/v2/envelope/use")
         .to_return(status: 200, body: { id: "env_tpl_88" }.to_json)
       stub_request(:post, "https://app.documenso.com/api/v2/envelope/distribute")
-        .to_return(status: 200, body: { success: true }.to_json)
+        .to_return(
+          status: 200,
+          body: {
+            id: "env_tpl_88",
+            recipients: [{ email: "jane@example.com", signingUrl: "https://app.documenso.com/sign/tok_88" }]
+          }.to_json
+        )
 
-      doc.send_from_template!(
+      result = doc.send_from_template!(
         template_id: 10,
         signers: [{ name: "Jane Client", email: "jane@example.com" }],
         prefill_fields: { matter_number: "2026-0041" }
       )
 
       doc.reload
+      expect(result.signing_url).to eq("https://app.documenso.com/sign/tok_88")
       expect(doc.documenso_envelope_id).to eq("env_tpl_88")
+      expect(doc.signing_url).to eq("https://app.documenso.com/sign/tok_88")
       expect(doc.signature_status).to eq("sent")
     end
   end

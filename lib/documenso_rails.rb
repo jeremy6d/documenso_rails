@@ -1,5 +1,6 @@
 require "documenso_rails/version"
 require "documenso_rails/configuration"
+require "documenso_rails/send_result"
 require "documenso_rails/client"
 require "documenso_rails/model"
 require "documenso_rails/engine"

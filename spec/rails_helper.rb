@@ -33,6 +33,7 @@ ActiveRecord::Schema.define do
   create_table :legal_documents, force: true do |t|
     t.string   :title
     t.string   :documenso_envelope_id
+    t.string   :signing_url
     t.string   :signature_status, default: "draft", null: false
     t.datetime :signature_sent_at
     t.datetime :signature_completed_at
@@ -40,13 +41,12 @@ ActiveRecord::Schema.define do
   end
 end
 
-ActiveStorage::Blob.service = ActiveStorage::Service::DiskService.new(root: Dir.mktmpdir)
-
 RSpec.configure do |config|
   config.use_transactional_fixtures = true
   config.include ActiveJob::TestHelper
 
   config.before(:each) do
+    ActiveStorage::Current.url_options = { host: "https://example.com" }
     DocumensoRails.configure do |c|
       c.base_url                 = "https://app.documenso.com/api/v2"
       c.api_key                  = "api_test_token_123"
